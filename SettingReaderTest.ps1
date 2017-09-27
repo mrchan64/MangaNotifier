@@ -1,0 +1,1 @@
+$settings = Get-Content -Path "webtoonsettings.json" -Raw | ConvertFrom-Json
