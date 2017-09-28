@@ -8,7 +8,7 @@ function ReadMetaData
         return
     }
     Else{
-        Write-Host "No Metadata file found so creating one now"
+        Write-Host "No Metadata file found so creating one now."
         New-Item -ItemType file -Path $SettingsFile
         return
     }
@@ -17,10 +17,10 @@ function ReadMetaData
 function WriteMetaData
 {
     If (-Not (Test-Path $SettingsFile)){
-        Write-Host "No Metadata file found so creating one now"
+        Write-Host "No Metadata file found so creating one now."
         New-Item -ItemType file -Path $SettingsFile
     }
-    Write-Host "Writing to Metadata file"
+    Write-Host "Writing to Metadata file."
     $output = $SettingsObject | ConvertTo-Json
     If ($SettingsObject.Count -eq 1){
         $output = $output -replace "`n","`n`t"
@@ -37,14 +37,14 @@ function PrintMetaData
 function ChangeChapterNumber
 {
     param(
-        [string]$urltitle,
-        [int]$chapternumber
+        [string]$Url,
+        [int]$ChapNum
     )
     $found = $false
     foreach($_ in $script:SettingsObject){
-        If ($_.urltitle -eq $urltitle){
-            Write-Host "Changing last read chapter of $($_.name) from $($_.lastReadChapter) to $chapternumber"
-            $_.lastReadChapter = $chapternumber
+        If ($_.urltitle -eq $Url){
+            Write-Host "Changing last read chapter of $($_.name) from $($_.lastReadChapter) to $ChapNum."
+            $_.lastReadChapter = $ChapNum
             $found = $true
             break
         }
